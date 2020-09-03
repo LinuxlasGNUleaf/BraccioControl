@@ -4,8 +4,8 @@ arduino/BraccioRobotFirmware/.vscode/c_cpp_properties.json
 arduino/BraccioRobotFirmware/.vscode/launch.json
 arduino/BraccioRobotFirmware/.vscode/ipch
 *.o
-*moc_*.*
+**/*moc_*.*
 *.stash
 *.user
 qt/ServoArmController/ServoArmController
-Makefile
+**/Makefile
