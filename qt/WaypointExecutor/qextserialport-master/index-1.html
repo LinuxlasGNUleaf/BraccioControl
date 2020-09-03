@@ -1,0 +1,72 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Unbekannt </title></head><body>
+<h2 id="about-qextserialport">About QextSerialPort</h2>
+<p>QextSerialPort provides an interface to old fashioned serial ports for Qt-based applications. It currently supports Mac OS X, Windows, Linux, FreeBSD. </p>
+<p>http://qextserialport.github.io/</p>
+<h2 id="how-to-use-1">How to use (1)</h2>
+<ul>
+<li>
+<p>Download the source code.</p>
+</li>
+<li>
+<p>Put the source code in any directory you like. For example, 3rdparty:</p>
+</li>
+</ul>
+<p><code>|-- project.pro
+            |-- ....
+            |-- 3rdparty\
+            |     |-- qextserialport\
+            |     |</code></p>
+<ul>
+<li>Add following line to your qmake project file:</li>
+</ul>
+<p><code>include(3rdparty/qextserialport/src/qextserialport.pri)</code></p>
+<ul>
+<li>Using QextSerialPort in your code. Enjoy it!</li>
+</ul>
+<p><code>#include "qextserialport.h"
+            ....
+            QextSerialPort * port = new QextSerialPort();
+            ....</code></p>
+<h2 id="how-to-use-2">How to use (2)</h2>
+<p>It's very easy to compile QextSerialPort directly into your application
+(see above section), however, we would prefer to use it as a shared library.</p>
+<ul>
+<li>
+<p>Download the source code, and put it in any location you like.</p>
+</li>
+<li>
+<p>Run following command to generate library. </p>
+</li>
+</ul>
+<p><code>qmake
+          make (or nmake)
+          sudo make install (or nmake install)</code></p>
+<ul>
+<li>Add following line to your project's file</li>
+</ul>
+<p><code>CONFIG += extserialport</code></p>
+<ul>
+<li>Using QextSerialPort in your code. Enjoy it!</li>
+</ul>
+<p><code>#include "qextserialport.h"
+            ....
+            QextSerialPort * port = new QextSerialPort();
+            ....</code></p>
+<h2 id="build-documents">Build Documents</h2>
+<ul>
+<li>
+<p>Run
+<code>qmake
+           make docs</code></p>
+</li>
+<li>
+<p>Note: More information can be found in doc/readme.txt</p>
+</li>
+</ul>
+<h2 id="build-examples">Build examples</h2>
+<ul>
+<li>Goto examples directory, then run</li>
+</ul>
+<p><code>qmake (or qmake -r)
+           make (or nmake)</code></p>
+</body></html>
