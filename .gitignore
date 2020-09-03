@@ -6,8 +6,8 @@ arduino/BraccioRobotFirmware/.vscode/ipch
 **/*.o
 **/*moc_*.*
 **/*.stash
-**/*.user
-**/*user.*
+**/*.pro.user
+**/*.pro.user.*
 qt/ServoArmController/ServoArmController
 **/Makefile
 **/*.autosave
