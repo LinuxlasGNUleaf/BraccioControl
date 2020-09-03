@@ -359,13 +359,6 @@
         </item>
        </layout>
       </item>
-      <item>
-       <widget class="QPushButton" name="update_robot">
-        <property name="text">
-         <string>Update Robot</string>
-        </property>
-       </widget>
-      </item>
      </layout>
     </item>
     <item>
@@ -377,7 +370,7 @@
        <number>0</number>
       </property>
       <item>
-       <widget class="QLabel" name="label">
+       <widget class="QLabel" name="waypoint_menu">
         <property name="font">
          <font>
           <pointsize>20</pointsize>
@@ -437,7 +430,7 @@
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout">
         <property name="topMargin">
-         <number>10</number>
+         <number>0</number>
         </property>
         <item>
          <widget class="QLineEdit" name="serial_port_box">
@@ -459,20 +452,14 @@
           </property>
          </widget>
         </item>
-        <item>
-         <widget class="QCheckBox" name="waitForResponse">
-          <property name="text">
-           <string>Wait for response</string>
-          </property>
-          <property name="checked">
-           <bool>true</bool>
-          </property>
-          <property name="tristate">
-           <bool>false</bool>
-          </property>
-         </widget>
-        </item>
        </layout>
+      </item>
+      <item>
+       <widget class="QLabel" name="serial_status">
+        <property name="text">
+         <string>Status:</string>
+        </property>
+       </widget>
       </item>
      </layout>
     </item>

@@ -11,26 +11,11 @@ MainWindow::MainWindow(QWidget *parent)
 }
 
 void MainWindow::updatePositions(){
-    if (task_finished or !ui->waitForResponse->isChecked()){
-        task_finished=false;
-        QString payload = createPayloadString();
-        transmitCommand(payload);
-    }
+    transmitCommand(createPayloadString());
 }
 
 QString MainWindow::createPayloadString(){
-    return QString::asprintf("%03d%03d%03d%03d%03d%03d%03d", servo_values[0], servo_values[1], servo_values[2], servo_values[3], servo_values[4], servo_values[5], servo_values[6]);;
-}
-
-void MainWindow::onReadyRead(){
-    QByteArray bytes;
-    int a = port->bytesAvailable();
-    bytes.resize(a);
-    port->read(bytes.data(), bytes.size());
-    if (bytes.toInt() == 1){
-        task_finished = true;
-        ui->statusbar->showMessage("Robot finished action.", 2000);
-    }
+    return QString::asprintf("%03d%03d%03d%03d%03d%03d%03d", servo_values[0], servo_values[1], servo_values[2], servo_values[3], servo_values[4], servo_values[5], servo_values[6]);
 }
 
 MainWindow::~MainWindow()
@@ -149,19 +134,14 @@ void MainWindow::on_claw_pos_box_valueChanged(int position)
     updatePositions();
 }
 
-void MainWindow::on_update_robot_clicked()
-{
-    updatePositions();
-}
-
 void MainWindow::on_add_waypoint_clicked()
 {
     QString waypoints = ui->textEdit->toPlainText();
-    if (waypoints != "")
+    if (waypoints.isEmpty())
         waypoints += ",\n";
-    waypoints += "\""+createPayloadString()+"\"";
+    waypoints += createPayloadString();
     ui->textEdit->setText(waypoints);
-    ui->statusbar->showMessage("Waypoint added!",2000);
+    ui->statusbar->showMessage("Waypoint added!",1000);
 }
 
 void MainWindow::on_copy_Waypoints_clicked()
@@ -176,7 +156,7 @@ void MainWindow::on_copy_Waypoints_clicked()
     #if defined(Q_OS_LINUX)
         QThread::msleep(1);
     #endif
-    ui->statusbar->showMessage("Waypoints copied to clipboard!",2000);
+    ui->statusbar->showMessage("Waypoints copied to clipboard!",1000);
 }
 
 void MainWindow::on_remove_last_waypoint_clicked()
@@ -227,10 +207,9 @@ void MainWindow::connect_to_serial()
     port->setDataBits(DATA_8);
     port->setStopBits(STOP_2);
     if (port->open(QIODevice::ReadWrite) == true) {
-        ui->statusbar->showMessage("Connected successfully.");
-        connect(port, SIGNAL(readyRead()), this, SLOT(onReadyRead()));
+        ui->serial_status->setText("Status: Connected successfully on port "+ui->serial_port_box->text());
         home_all_axis();
     } else {
-        ui->statusbar->showMessage("No Connection");
+        ui->serial_status->setText("Status: No open connection found on port "+ui->serial_port_box->text());
     }
 }

@@ -3,9 +3,11 @@ arduino/BraccioRobotFirmware/.vscode/.browse.c_cpp.db*
 arduino/BraccioRobotFirmware/.vscode/c_cpp_properties.json
 arduino/BraccioRobotFirmware/.vscode/launch.json
 arduino/BraccioRobotFirmware/.vscode/ipch
-*.o
+**/*.o
 **/*moc_*.*
-*.stash
-*.user
+**/*.stash
+**/*.user
+**/*user.*
 qt/ServoArmController/ServoArmController
 **/Makefile
+**/*.autosave

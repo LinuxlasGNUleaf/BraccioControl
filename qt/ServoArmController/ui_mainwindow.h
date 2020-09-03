@@ -11,7 +11,6 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
-#include <QtWidgets/QCheckBox>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
@@ -67,9 +66,8 @@ public:
     QHBoxLayout *speed;
     QSlider *speed_slider;
     QSpinBox *speed_box;
-    QPushButton *update_robot;
     QVBoxLayout *waypoint_panel;
-    QLabel *label;
+    QLabel *waypoint_menu;
     QTextEdit *textEdit;
     QHBoxLayout *waypoint_control;
     QPushButton *add_waypoint;
@@ -79,7 +77,7 @@ public:
     QHBoxLayout *horizontalLayout;
     QLineEdit *serial_port_box;
     QPushButton *reconnect;
-    QCheckBox *waitForResponse;
+    QLabel *serial_status;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -320,22 +318,17 @@ public:
 
         control_panel->addLayout(speed);
 
-        update_robot = new QPushButton(centralwidget);
-        update_robot->setObjectName(QString::fromUtf8("update_robot"));
-
-        control_panel->addWidget(update_robot);
-
 
         horizontalLayout_7->addLayout(control_panel);
 
         waypoint_panel = new QVBoxLayout();
         waypoint_panel->setObjectName(QString::fromUtf8("waypoint_panel"));
         waypoint_panel->setContentsMargins(10, -1, -1, 0);
-        label = new QLabel(centralwidget);
-        label->setObjectName(QString::fromUtf8("label"));
-        label->setFont(font);
+        waypoint_menu = new QLabel(centralwidget);
+        waypoint_menu->setObjectName(QString::fromUtf8("waypoint_menu"));
+        waypoint_menu->setFont(font);
 
-        waypoint_panel->addWidget(label);
+        waypoint_panel->addWidget(waypoint_menu);
 
         textEdit = new QTextEdit(centralwidget);
         textEdit->setObjectName(QString::fromUtf8("textEdit"));
@@ -374,7 +367,7 @@ public:
 
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
-        horizontalLayout->setContentsMargins(-1, 10, -1, -1);
+        horizontalLayout->setContentsMargins(-1, 0, -1, -1);
         serial_port_box = new QLineEdit(centralwidget);
         serial_port_box->setObjectName(QString::fromUtf8("serial_port_box"));
         QSizePolicy sizePolicy(QSizePolicy::Minimum, QSizePolicy::Fixed);
@@ -390,15 +383,13 @@ public:
 
         horizontalLayout->addWidget(reconnect);
 
-        waitForResponse = new QCheckBox(centralwidget);
-        waitForResponse->setObjectName(QString::fromUtf8("waitForResponse"));
-        waitForResponse->setChecked(true);
-        waitForResponse->setTristate(false);
-
-        horizontalLayout->addWidget(waitForResponse);
-
 
         waypoint_panel->addLayout(horizontalLayout);
+
+        serial_status = new QLabel(centralwidget);
+        serial_status->setObjectName(QString::fromUtf8("serial_status"));
+
+        waypoint_panel->addWidget(serial_status);
 
 
         horizontalLayout_7->addLayout(waypoint_panel);
@@ -432,15 +423,14 @@ public:
         claw_close->setText(QCoreApplication::translate("MainWindow", "Close Claw", nullptr));
         resetRobot->setText(QCoreApplication::translate("MainWindow", "Reset Robot", nullptr));
         speed_label->setText(QCoreApplication::translate("MainWindow", "Movement Speed", nullptr));
-        update_robot->setText(QCoreApplication::translate("MainWindow", "Update Robot", nullptr));
-        label->setText(QCoreApplication::translate("MainWindow", "Waypoint Menu", nullptr));
+        waypoint_menu->setText(QCoreApplication::translate("MainWindow", "Waypoint Menu", nullptr));
         add_waypoint->setText(QCoreApplication::translate("MainWindow", "Add Waypoint", nullptr));
         remove_last_waypoint->setText(QCoreApplication::translate("MainWindow", "Remove Last Waypoint", nullptr));
         copy_Waypoints->setText(QCoreApplication::translate("MainWindow", "Copy Waypoints", nullptr));
         serial_port_label->setText(QCoreApplication::translate("MainWindow", "Serial Port:", nullptr));
         serial_port_box->setText(QCoreApplication::translate("MainWindow", "/dev/ttyACM0", nullptr));
         reconnect->setText(QCoreApplication::translate("MainWindow", "Reconnect", nullptr));
-        waitForResponse->setText(QCoreApplication::translate("MainWindow", "Wait for response", nullptr));
+        serial_status->setText(QCoreApplication::translate("MainWindow", "Status:", nullptr));
     } // retranslateUi
 
 };
