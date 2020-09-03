@@ -11,11 +11,6 @@ MainWindow::MainWindow(QWidget *parent)
 }
 
 void MainWindow::updatePositions(){
-    if (claw_closed)
-        servo_values[6] = claw_pos * (ui->claw_pos_box->value() / 100.0);
-    else
-        servo_values[6] = 10;
-
     if (task_finished or !ui->waitForResponse->isChecked()){
         task_finished=false;
         QString payload = createPayloadString();
@@ -124,13 +119,13 @@ void MainWindow::on_axis5_box_valueChanged(int position)
 
 void MainWindow::on_claw_close_clicked()
 {
-    claw_closed = true;
+    servo_values[6] = claw_pos * (ui->claw_pos_box->value() / 100.0);
     updatePositions();
 }
 
 void MainWindow::on_claw_open_clicked()
 {
-    claw_closed = false;
+    servo_values[6] = 10;
     updatePositions();
 }
 
@@ -148,8 +143,9 @@ void MainWindow::on_speed_box_valueChanged(int position)
     updatePositions();
 }
 
-void MainWindow::on_claw_pos_box_valueChanged(int arg1)
+void MainWindow::on_claw_pos_box_valueChanged(int position)
 {
+    servo_values[6] = claw_pos * (position / 100.0);
     updatePositions();
 }
 
@@ -192,11 +188,6 @@ void MainWindow::on_remove_last_waypoint_clicked()
     else
         waypoints = "";
     ui->textEdit->setText(waypoints);
-}
-
-void MainWindow::on_home_all_axis_clicked()
-{
-    home_all_axis();
 }
 
 void MainWindow::home_all_axis(){

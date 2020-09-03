@@ -42,7 +42,6 @@ private slots:
     void on_copy_Waypoints_clicked();
     void on_remove_last_waypoint_clicked();
     void home_all_axis();
-    void on_home_all_axis_clicked();
     void on_resetRobot_clicked();
     void on_reconnect_clicked();
     void connect_to_serial();
@@ -53,7 +52,6 @@ private:
     int servo_values[7];
     int original_values[7] = {20,90,90,90,90,90,10};
     int claw_pos = 73;
-    bool claw_closed = true;
     bool task_finished;
     QextSerialPort *port;
 };

@@ -7,3 +7,5 @@ arduino/BraccioRobotFirmware/.vscode/ipch
 *moc_*.*
 *.stash
 *.user
+qt/ServoArmController/ServoArmController
+Makefile
